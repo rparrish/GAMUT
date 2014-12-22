@@ -11,6 +11,8 @@ gamutplot(title = "test", mydata, reordering)
 \item{mydata}{data frame with group, numerator, denominator}
 
 \item{reordering}{sort order for the table and plot}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 a list - table has the raw data and plot has the dotplot
