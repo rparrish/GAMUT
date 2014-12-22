@@ -9,11 +9,12 @@
 #' @param reordering Sets the sorting order. Default is 'decreasing'
 #' @param qlabel Default is 'Estimated rate'
 #' @param rate units of measure. Default is '\%'
+#' @param ... further arguments passed to or from other methods.
 #' @author Rollie Parrish
 #' @export
 
 
-plot_metrics <- function (metric= "metric name", program_name, num, den, reordering="decreasing", qlabel="Estimated rate", rate="%") {
+plot_metrics <- function (metric= "metric name", program_name, num, den, reordering="decreasing", qlabel="Estimated rate", rate="%", ...) {
 
 
   x <- get_CI(program_name
@@ -43,6 +44,7 @@ plot_metrics <- function (metric= "metric name", program_name, num, den, reorder
                  , reference.line=rate.overall
                  , reordering=reordering
                  , qlabel=qlabel
+                 , ...
                  )
 
   results.table <- (cbind(program_name, x[2:6]))
