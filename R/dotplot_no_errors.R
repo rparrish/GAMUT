@@ -16,6 +16,7 @@
 #' @param horizontal layout of the dotplot. default is TRUE
 #' @param ... further arguments passed to or from other methods.
 #' @author Rollie Parrish
+#' @import lattice
 #' @export
 
 dotplot_no_errors <- function(x, myTheme = simpleTheme(pch = 19, col = 1),
