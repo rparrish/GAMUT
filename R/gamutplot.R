@@ -8,6 +8,7 @@
 #' @param reordering sort order for the table and plot
 #' @return a list - table has the raw data and plot has the dotplot
 #' @author Rollie Parrish
+#' @export
 
 gamutplot <- function(title = "test",
                        mydata,

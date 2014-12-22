@@ -2,6 +2,7 @@
 
 export(dotplot_errors)
 export(dotplot_no_errors)
+export(gamutplot)
 export(get_CI)
 export(plot_metrics)
 export(plot_metrics_wm)
