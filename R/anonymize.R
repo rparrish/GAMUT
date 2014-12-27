@@ -6,6 +6,7 @@
 #' @param x a list of factors
 #' @return a list of numbers
 #' @author Rollie Parrish
+#' @export
 
 anonymize <- function(x) {
   set.seed(42)
