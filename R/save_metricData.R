@@ -11,7 +11,7 @@
 save_metricData <- function() {
 
 
-use.ID <- TRUE
+use.ID <- FALSE
 
 ## load data
 uri <- "https://ampa.org/redcap/api/"
@@ -23,23 +23,25 @@ GAMUT_data <- redcap_read_oneshot(redcap_uri=uri, token=GAMUT_token,
                            export_data_access_groups=TRUE,
                            raw_or_label = "label",
                            sslversion=NULL)$data
+GAMUT_data$mark <- 20
 
 AIM_data <- redcap_read_oneshot(redcap_uri=uri, token=AIM_token,
                                   export_data_access_groups=TRUE,
                                   raw_or_label = "label",
                                   sslversion=NULL)$data
+AIM_data$mark <- 0
 
 AEL_data <- redcap_read_oneshot(redcap_uri=uri, token=AEL_token,
                                   export_data_access_groups=TRUE,
                                   raw_or_label = "label",
                                   sslversion=NULL)$data
+AEL_data$mark <- 2
 
 #raw <- read.csv("data/GAMUTDatabase_DATA_2014-10-27_1843.csv", stringsAsFactors=FALSE, nrows=1)
 #redcap_data <- read.csv("data/GAMUTDatabase_DATA_LABELS_2014-10-27_1827.csv", stringsAsFactors=FALSE)
+#names(redcap_data) <- names(raw)
 
 redcap_data <- rbind(GAMUT_data, AIM_data, AEL_data)
-
-names(redcap_data) <- names(raw)
 
 redcap_data$program_name <- as.factor(redcap_data$program_name)
 redcap_data$redcap_event_name <- as.factor(redcap_data$redcap_event_name)
@@ -73,7 +75,7 @@ ID.lookup <- merge(ID.lookup, program_info[,c("program_name", "dm_email")], by="
 
 mydata <- merge(mydata, ID.lookup, by=c("program_name"))
 
-mydata <- mydata[,c(1,72,12:70)]
+mydata <- mydata[,c(1,73,12:70, 72)]
 
 
 #metricData <- aggregate( . ~ redcap_data_access_group + ID  , FUN=sum, data=mydata[c(1,3:23,48,49,50)])
