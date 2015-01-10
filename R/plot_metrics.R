@@ -34,9 +34,9 @@ plot_metrics <- function (metric= "metric name", program_name, num, den, reorder
   }
 
   plot <- dotplot_errors(x
-                 , main=paste(metric
-                              , "\n"
-                              , "Overall: "
+                 , main=list(label=paste(metric
+                              , "\n"), cex=.8)
+                 , sub=paste("GAMUT Overall rate: "
                               , round(rate.overall,1)
                               , rate
                               , paste0(" (", sum(num),"/", sum(den),")")
