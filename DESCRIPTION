@@ -7,5 +7,6 @@ Author: Rollie Parrish <rparrish@flightweb.com>
 Maintainer: Rollie Parrish <rparrish@flightweb.com>
 Description: Loads GAMUT data from REDCap and generates various plots
 License: MIT
-Depends:
+Depends: 
     lattice
+Imports: dplyr
