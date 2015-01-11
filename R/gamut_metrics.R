@@ -1,6 +1,6 @@
 
 
-require(GAMUT)
+#require(GAMUT)
 
 
 fields <- c(~unintended_hypothermia, ~total_neo_patients)
@@ -98,6 +98,6 @@ bp <- function() {
 
 }
 
-bp()
+
 
 
