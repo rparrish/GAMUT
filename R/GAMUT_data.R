@@ -49,6 +49,9 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         , ID = anonymize(as.factor(mydata$program_name))
     )
 
+
+    mydata <- mydata %>% inner_join(ID.lookup)
+
     monthly_data <- mydata %>%
         filter(redcap_event_name != "Initial") %>%
         filter(!is.na(total_patients)) %>%
