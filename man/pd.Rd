@@ -3,11 +3,18 @@
 \alias{pd}
 \title{pd}
 \usage{
-pd(...)
+pd(dag = "", operator = "", ...)
 }
 \arguments{
-\item{...}{comma separated list of variables to include. First variable should be
-group, which is either "program_name" or "ID".}
+\item{dag}{list of redcap data access groups. Shows the program name for the
+data access groups in the list and the anonymous ID for all others. If empty (default), then all
+program names will be shown.}
+
+\item{operator}{used to show multiple data access groups from the same operator (ie. AIM, MTR, etc.).
+Will display the program names when the first three letters of the program name matches the value
+in this field.}
+
+\item{...}{comma separated list of variables to include.}
 }
 \description{
 Returns a data frame with aggregated numerators and denominators.
