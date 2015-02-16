@@ -11,4 +11,6 @@ Depends:
     lattice
 Imports:
     dplyr,
-    zoo
+    tidyr,
+    magrittr,
+    zoo,
