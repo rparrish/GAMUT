@@ -13,6 +13,7 @@
 #' @param ... comma separated list of variables to include.
 #' @author Rollie Parrish
 #' @export
+#' @import dplyr
 
 pd <- function( dag = "", operator = "",  ...) {
     program_data <-
