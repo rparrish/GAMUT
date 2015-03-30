@@ -21,7 +21,7 @@
 
 
 sendit <- function(recipients, filename, subject, message,
-                   expireDays=7, emailFrom=1, url="http://httpbin.org/post",
+                   expireDays=15, emailFrom=1, url="http://httpbin.org/post",
                    username, password) {
 
     body <- list(username = username,

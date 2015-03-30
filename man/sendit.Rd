@@ -3,7 +3,7 @@
 \alias{sendit}
 \title{sendit.R}
 \usage{
-sendit(recipients, filename, subject, message, expireDays = 7,
+sendit(recipients, filename, subject, message, expireDays = 15,
   emailFrom = 1, url = "http://httpbin.org/post", username, password)
 }
 \arguments{
