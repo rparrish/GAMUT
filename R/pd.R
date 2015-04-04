@@ -18,7 +18,7 @@
 pd <- function( dag = "", operator = "",  ...) {
     program_data <-
         monthly_data %>%
-        filter(redcap_event_name != "Initial") %>%
+        #filter(redcap_event_name != "Initial") %>%
         select_("program_name", "ID", "redcap_data_access_group", ...) %>%
         filter(!is.na(num),
                !is.na(den),
