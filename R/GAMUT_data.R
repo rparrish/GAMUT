@@ -56,7 +56,7 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         filter(redcap_event_name != "Initial") %>%
         filter(!is.na(total_patients)) %>%
         mutate(month = as.Date(zoo::as.yearmon(redcap_event_name))) %>%
-        select(program_name, month, total_patients:monthly_data_complete)
+        select(program_name, ID, month, redcap_data_access_group, total_patients:monthly_data_complete)
 
     metricData_count <- monthly_data %>%
         group_by(program_name) %>%
