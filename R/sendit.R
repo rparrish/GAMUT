@@ -17,7 +17,6 @@
 #'
 #' @author Rollie Parrish
 #' @export
-#' @import httr
 
 
 sendit <- function(recipients, filename, subject, message,
