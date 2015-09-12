@@ -15,20 +15,17 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
     GAMUT_data <- tbl_df(redcap_read_oneshot(redcap_uri=uri,
                                       token=GAMUT_token,
                                       export_data_access_groups=TRUE,
-                                      raw_or_label = "label",
-                                      sslversion=NULL)$data)
+                                      raw_or_label = "label")$data)
 
     AIM_data <- tbl_df(redcap_read_oneshot(redcap_uri=uri,
                                     token=AIM_token,
                                     export_data_access_groups=TRUE,
-                                    raw_or_label = "label",
-                                    sslversion=NULL)$data)
+                                    raw_or_label = "label")$data)
 
     AEL_data <- tbl_df(redcap_read_oneshot(redcap_uri=uri,
                                     token=AEL_token,
                                     export_data_access_groups=TRUE,
-                                    raw_or_label = "label",
-                                    sslversion=NULL)$data)
+                                    raw_or_label = "label")$data)
 
     redcap_data <- bind_rows(GAMUT_data, AIM_data, AEL_data)
 
