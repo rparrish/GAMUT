@@ -57,6 +57,6 @@ dotplot_no_errors <- function(x, myTheme = simpleTheme(pch = 19, col = 1),
                       panel.abline(h = reference.line, col = "grey")
                   panel.abline(v = x, col = "grey", lty = "dashed")
                   panel.stripplot(x, y, ...) }, ...)
-  print(p)
+  #print(p)
   invisible(p)
 }
