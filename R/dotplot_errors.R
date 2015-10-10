@@ -47,13 +47,13 @@ dotplot_errors <- function(x, myTheme = simpleTheme(pch = 19, col = 1),
      }
    }
 
-  if (type.bar == "CI") xlab <- substitute(expression(lab %+-% CL),
+  if (type.bar == "CI") xlab <- substitute(lab %+-% CL,
                                            list(lab = qlabel, CL = paste(" ", as.character(conf.level * 100),
                                                                          "% CI", add.text.to.qlabel, sep = ""))) else
                                                                            if (type.bar == "SE")
-                                                                             xlab <- substitute(expression(lab %+-% " SE" ~ ~ AT),
+                                                                             xlab <- substitute(lab %+-% " SE" ~ ~ AT,
                                                                                                 list(lab = qlabel, AT = add.text.to.qlabel)) else
-                                                                                                  xlab <- substitute(expression(lab %+-% Type.bar ~ ~ AT),
+                                                                                                  xlab <- substitute(lab %+-% Type.bar ~ ~ AT,
                                                                                                                      list(lab = qlabel, Type.bar = type.bar, AT = add.text.to.qlabel))
   if (horizontal == T)
     p <- stripplot(group ~ est, data = x,
