@@ -60,8 +60,8 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         summarise(months_reported = n())
 
     metric_data <- monthly_data %>%
-        group_by(program_name) %>%
-        summarise_each(funs(sum(., na.rm=TRUE)), -month)
+        group_by(redcap_data_access_group, ID, program_name) %>%
+        summarise_each(funs(sum(., na.rm=TRUE)), -month, -monthly_data_complete)
 
     GAMUT_date_loaded <- date()
 
