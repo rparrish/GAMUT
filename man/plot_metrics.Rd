@@ -5,7 +5,8 @@
 \title{plot_metrics}
 \usage{
 plot_metrics(metric = "metric name", program_name, num, den,
-  reordering = "decreasing", qlabel = "Estimated rate", rate = "\%", ...)
+  reordering = "decreasing", qlabel = "Estimated rate", rate = "\%",
+  type = "dotplot_errors", ...)
 }
 \arguments{
 \item{metric}{Name of the GAMUT metric}
@@ -21,6 +22,8 @@ plot_metrics(metric = "metric name", program_name, num, den,
 \item{qlabel}{Default is 'Estimated rate'}
 
 \item{rate}{units of measure. Default is '\%'}
+
+\item{type}{select the type of plot - dotplot_errors (default) or beeswarm.}
 
 \item{...}{further arguments passed to or from other methods.}
 }

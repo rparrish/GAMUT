@@ -9,12 +9,13 @@
 #' @param reordering Sets the sorting order. Default is 'decreasing'
 #' @param qlabel Default is 'Estimated rate'
 #' @param rate units of measure. Default is '\%'
+#' @param type select the type of plot - dotplot_errors (default) or beeswarm.
 #' @param ... further arguments passed to or from other methods.
 #' @author Rollie Parrish
 #' @export
 
 
-plot_metrics <- function (metric= "metric name", program_name, num, den, reordering="decreasing", qlabel="Estimated rate", rate="%", ...) {
+plot_metrics <- function (metric= "metric name", program_name, num, den, reordering="decreasing", qlabel="Estimated rate", rate="%", type = "dotplot_errors", ...) {
 
 
   x <- get_CI(program_name
@@ -33,6 +34,7 @@ plot_metrics <- function (metric= "metric name", program_name, num, den, reorder
     rate.overall <- sum(num)/sum(den)*100
   }
 
+  if(type == "dotplot_errors") {
   plot <- dotplot_errors(x
                  , main=list(label=paste(metric
                               , "\n"), cex=.8)
@@ -46,6 +48,13 @@ plot_metrics <- function (metric= "metric name", program_name, num, den, reorder
                  , qlabel=qlabel
                  , ...
                  )
+  }
+
+  if(type == "beeswarm") {
+
+      plot(mtcars)
+  }
+
 
   results.table <- (cbind(program_name, x[2:6]))
   names(results.table) <- c("Program", "den.", "num.", "lower CI", "rate", "upper CI")
