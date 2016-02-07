@@ -46,6 +46,12 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         , ID = anonymize(as.factor(mydata$program_name))
     )
 
+    ## Bedside STEMI Times
+    bedside_stemi <- ddply(mydata[mydata$stemi_cases > 0, c(1,2,39,40,41,42)], .(program_name, ID),
+                           function(x) data.frame(
+                               bedside_stemi.wavg=weighted.mean(x$mean_bedside_stemi, x$stemi_cases, na.rm=TRUE)
+                           )
+    )
 
     mydata <- mydata %>% inner_join(ID.lookup)
 
