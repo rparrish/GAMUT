@@ -46,6 +46,8 @@ beeswarm_plot <- function(data = NULL, title = "GAMUT Metric title")  {
                  col = "blue")
         }
     # add mean
+        overall_mean <- sum(data$num)/sum(data$den)
+
     segments(y0 = .6, x0=overall_mean,
              y1 = 1.4, x1 = overall_mean,
              pch=16, lty = "dashed",
