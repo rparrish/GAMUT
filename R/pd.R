@@ -19,27 +19,16 @@ pd <- function( dag = "", operator = "",  ...) {
     program_data <-
         monthly_data %>%
         #filter(redcap_event_name != "Initial") %>%
-        select_("program_name", "ID", "redcap_data_access_group", ...) %>%
+        select_("program_name",  "redcap_data_access_group", ...) %>%
         filter(!is.na(num),
                !is.na(den),
                den > 0,
                den >= num) %>%
-        group_by(program_name, ID, redcap_data_access_group) %>%
+        group_by(program_name,  redcap_data_access_group) %>%
 
         #
         summarise_each(funs(sum)) %>%
-        ungroup() %>%
-        {
-            if(dag != "") {
-                mutate(., label = ifelse(redcap_data_access_group %in% dag, as.character(program_name), ID))
-            } else {mutate(., label = program_name)}
-        } %>%
-        {
-            if(operator != "") {
-                mutate(., label = ifelse(substr(as.character(program_name), 1,3) == operator, as.character(program_name),label ))
-            } else {.}
-        }
-
+        ungroup()
 
     program_data$mark = 16
 
