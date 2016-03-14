@@ -10,7 +10,7 @@
 
 GAMUT_data <- function(file="data/GAMUT.Rdata") {
     ## load data
-    source(".REDCap_config.R")
+    #source(".REDCap_config.R")
 
     GAMUT_data <- tbl_df(redcap_read_oneshot(redcap_uri=uri,
                                       token=GAMUT_token,
