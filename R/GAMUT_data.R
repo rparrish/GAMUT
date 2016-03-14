@@ -46,33 +46,28 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         , ID = anonymize(as.factor(mydata$program_name))
     )
 
-    ## Bedside STEMI Times
-    bedside_stemi <- ddply(mydata[mydata$stemi_cases > 0, c(1,2,39,40,41,42)], .(program_name, ID),
-                           function(x) data.frame(
-                               bedside_stemi.wavg=weighted.mean(x$mean_bedside_stemi, x$stemi_cases, na.rm=TRUE)
-                           )
-    )
+    #mydata <- mydata %>% inner_join(ID.lookup)
 
-    mydata <- mydata %>% inner_join(ID.lookup)
-
-    monthly_data <- mydata %>%
+    monthly_data <-
+        mydata %>%
         filter(redcap_event_name != "Initial") %>%
         filter(!is.na(total_patients)) %>%
-        mutate(month = as.Date(zoo::as.yearmon(redcap_event_name))) %>%
-        select(program_name, ID, month, redcap_data_access_group, total_patients:monthly_data_complete)
+        droplevels() %>%
+        mutate(month = as.Date(zoo::as.yearmon(as.character(redcap_event_name)))) %>%
+        select(program_name,  month, redcap_data_access_group, total_patients:monthly_data_complete)
 
     metricData_count <- monthly_data %>%
         group_by(program_name) %>%
         summarise(months_reported = n())
 
     metric_data <- monthly_data %>%
-        group_by(redcap_data_access_group, ID, program_name) %>%
+        group_by(redcap_data_access_group, program_name) %>%
         summarise_each(funs(sum(., na.rm=TRUE)), -month, -monthly_data_complete)
 
     GAMUT_date_loaded <- date()
 
     save(redcap_data, mydata,
-         program_info, ID.lookup, monthly_data,
+         program_info,  monthly_data,
          GAMUT_date_loaded,
          file=file)
 }
