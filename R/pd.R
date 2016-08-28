@@ -28,6 +28,8 @@ pd <- function( dag = "", operator = "",  ...) {
 
         #
         summarise_each(funs(sum)) %>%
+        mutate(prop = num/den) %>%
+        arrange(desc(prop)) %>%
         ungroup()
 
     #program_data$mark = 16
