@@ -27,7 +27,12 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
                                     export_data_access_groups=TRUE,
                                     raw_or_label = "label")$data)
 
-    redcap_data <- bind_rows(GAMUT_data, AIM_data, AEL_data)
+    MTr_data <- tbl_df(redcap_read_oneshot(redcap_uri=uri,
+                                    token=MTr_token,
+                                    export_data_access_groups=TRUE,
+                                    raw_or_label = "label")$data)
+
+    redcap_data <- bind_rows(GAMUT_data, AIM_data, AEL_data, MTr_data)
 
     mydata <- redcap_data %>%
         mutate(program_name = as.factor(program_name),
