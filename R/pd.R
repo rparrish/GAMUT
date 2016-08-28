@@ -30,7 +30,7 @@ pd <- function( dag = "", operator = "",  ...) {
         summarise_each(funs(sum)) %>%
         ungroup()
 
-    program_data$mark = 16
+    #program_data$mark = 16
 
     results <- program_data
 
