@@ -65,14 +65,15 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
         group_by(program_name) %>%
         summarise(months_reported = n())
 
-    metric_data <- monthly_data %>%
-        group_by(redcap_data_access_group, program_name) %>%
-        summarise_each(funs(sum(., na.rm=TRUE)), -month, -monthly_data_complete)
+    metric_data <-
+        redcap_read_oneshot(redcap_uri = uri, token = metric_token, raw_or_label = "label")$data %>%
+        tbl_df()
 
     GAMUT_date_loaded <- date()
 
     save(redcap_data, mydata,
          program_info,  monthly_data,
+         metric_data,
          GAMUT_date_loaded,
          file=file)
 }
