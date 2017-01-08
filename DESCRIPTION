@@ -1,8 +1,8 @@
 Package: GAMUT
 Type: Package
 Title: Functions used to support the GAMUT database
-Version: 1.0
-Date: 2014-12-21
+Version: 2.0
+Date: 2017-01-08
 Author: Rollie Parrish <rparrish@flightweb.com>
 Maintainer: Rollie Parrish <rparrish@flightweb.com>
 Description: Loads GAMUT data from REDCap and generates various plots
@@ -14,3 +14,6 @@ Imports:
     tidyr,
     magrittr,
     zoo,
+    RMySQL,
+    REDCapR
+RoxygenNote: 5.0.1
