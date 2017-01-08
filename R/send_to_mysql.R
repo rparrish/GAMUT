@@ -14,7 +14,7 @@ send_to_mysql <- function() {
     metric_details <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
-            token = metric_details_token,
+            token = Sys.getenv("metric_details_token"),
             export_data_access_groups = FALSE,
             raw_or_label = "label"
         )$data
