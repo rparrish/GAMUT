@@ -9,14 +9,7 @@
 
 send_to_mysql <- function() {
 
-    #library(RMySQL)
-    #library(REDCapR)
-    #library(dplyr)
-
-
-    source("R/.MySQL_config.R")
-    source("R/.REDCap_config.R")
-    source("R/anonymize.R")
+    uri <- Sys.getenv("REDCAP_GAMUT_uri")
 
     metric_details <- tbl_df(
         redcap_read_oneshot(
@@ -30,7 +23,7 @@ send_to_mysql <- function() {
     GAMUT_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
-            token = GAMUT_token,
+            token = Sys.getenv("GAMUT_token"),
             export_data_access_groups = TRUE,
             raw_or_label = "label"
         )$data
@@ -38,7 +31,7 @@ send_to_mysql <- function() {
      AIM_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
-            token = AIM_token,
+            token = Sys.getenv("AIM_token"),
             export_data_access_groups = TRUE,
             raw_or_label = "label"
         )$data
@@ -47,7 +40,7 @@ send_to_mysql <- function() {
     AEL_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
-            token = AEL_token,
+            token = Sys.getenv("AEL_token"),
             export_data_access_groups = TRUE,
             raw_or_label = "label"
         )$data
@@ -56,7 +49,7 @@ send_to_mysql <- function() {
     MTr_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
-            token = MT_token,
+            token = Sys.getenv("MT_token"),
             export_data_access_groups = TRUE,
             raw_or_label = "label"
         )$data
@@ -112,11 +105,11 @@ send_to_mysql <- function() {
 ## Send to MySQL
     conn <-  dbConnect(
         RMySQL::MySQL(),
-        username = .mysql_username,
-        password = .mysql_password,
-        host = .mysql_host,
+        username = Sys.getenv("GAMUT_MYSQL_USERNAME"),
+        password = Sys.getenv("GAMUT_MYSQL_PASSWORD"),
+        host = Sys.getenv("GAMUT_MYSQL_HOST"),
         port = 3306,
-        dbname = .mysql_dbname
+        dbname = Sys.getenv("GAMUT_MYSQL_DBNAME")
     )
 
 
