@@ -9,7 +9,7 @@
 
 send_to_mysql <- function() {
 
-    uri <- Sys.getenv("REDCAP_GAMUT_uri")
+   uri <- Sys.getenv("REDCAP_GAMUT_uri")
 
     metric_details <- tbl_df(
         redcap_read_oneshot(
