@@ -35,6 +35,7 @@ GAMUT_data <- function(file="data/GAMUT.Rdata") {
     redcap_data <- bind_rows(GAMUT_data, AIM_data, AEL_data, MTr_data)
 
     mydata <- redcap_data %>%
+        filter(redcap_data_access_group != "zzz_retired__do_no") %>%
         mutate(program_name = as.factor(program_name),
                redcap_event_name = as.factor(redcap_event_name),
                redcap_data_access_group = as.factor(redcap_data_access_group),
