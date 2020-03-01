@@ -15,7 +15,7 @@ send_to_mysql <- function() {
         redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("metric_details_token"),
-            export_data_access_groups = FALSE,
+            export_data_access_groups = FALSE, 
             raw_or_label = "label"
         )$data
     )
@@ -24,35 +24,43 @@ send_to_mysql <- function() {
         redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("GAMUT_token"),
-            export_data_access_groups = TRUE,
+            export_data_access_groups = TRUE, #guess_max = 10000,
+            guess_type = FALSE,
             raw_or_label = "label"
-        )$data
+        )$data %>%
+            mutate_at(vars(total_patients:sre), as.numeric)
     )
      AIM_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("AIM_token"),
-            export_data_access_groups = TRUE,
+            export_data_access_groups = TRUE, #guess_max = 10000,
+            guess_type = FALSE,
             raw_or_label = "label"
-        )$data
-    )
+        )$data %>%
+            mutate_at(vars(total_patients:sre), as.numeric)
+    ) 
 
     AEL_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("AEL_token"),
-            export_data_access_groups = TRUE,
+            export_data_access_groups = TRUE, #guess_max = 10000,
+            guess_type = FALSE,
             raw_or_label = "label"
-        )$data
+        )$data %>%
+            mutate_at(vars(total_patients:sre), as.numeric)
     )
 
     MTr_data <- tbl_df(
         redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("MT_token"),
-            export_data_access_groups = TRUE,
+            export_data_access_groups = TRUE, #guess_max = 10000,
+            guess_type = FALSE,
             raw_or_label = "label"
-        )$data
+        )$data %>%
+            mutate_at(vars(total_patients:sre), as.numeric)
     )
 
      redcap_data <-
