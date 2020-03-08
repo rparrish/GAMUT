@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^GAMUT\.Rcheck$
+^GAMUT.*\.tar\.gz$
+^GAMUT.*\.tgz$
