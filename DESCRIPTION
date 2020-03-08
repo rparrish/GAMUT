@@ -16,5 +16,6 @@ Imports:
     zoo,
     RMySQL,
     usethis,
+    checkmate,
     REDCapR
 RoxygenNote: 5.0.1
