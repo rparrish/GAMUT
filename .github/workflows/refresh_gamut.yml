@@ -1,0 +1,62 @@
+name: refresh_gamut
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron:  '0 17 * * *'
+
+jobs:
+  Rscript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+        
+      - name: Install curl
+        run: sudo apt-get install libcurl4-openssl-dev  
+              
+      - name: Install remotes
+        run: |
+          install.packages('remotes')
+        shell: Rscript {0}
+        
+      - name: Cache R packages 
+        if: runner.os != 'Windows' 
+        uses: actions/cache@v1 
+        with: 
+           path: ${{ env.R_LIBS_USER }} 
+           key: ${{ runner.os }}-r-${{ hashFiles('README.md') }} 
+           restore-keys:  
+             ${{ runner.os }}-r-
+
+      - name: Install dependencies
+        run: |
+          #remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran(c("DBI", "REDCapR"))
+          remotes::install_github("rparrish/GAMUT")
+        shell: Rscript {0}      
+        
+        env:
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+          USER_KEY: ${{ secrets.USER_KEY }}
+              
+      - name: update GAMUT database
+        env: 
+          GAMUT_MYSQL_HOST: mysql.gamutqi.org
+          GAMUT_MYSQL_DBNAME: gamut_db
+          GAMUT_MYSQL_USERNAME: ${{ secrets.GAMUT_MYSQL_USERNAME }}        
+          GAMUT_MYSQL_PASSWORD: ${{ secrets.GAMUT_MYSQL_PASSWORD }}        
+          REDCAP_GAMUT_uri: https://redcap.gamutqi.org/api/       
+          metric_details_token:  ${{ secrets.metric_details_token }}        
+          GAMUT_token:  ${{ secrets.GAMUT_token }}
+          AEL_token:  ${{ secrets.AEL_token }}
+          AIM_token:  ${{ secrets.AIM_token }}
+          MT_token:  ${{ secrets.MT_token }}
+        run: |
+          library(DBI)
+          library(REDCapR)
+          GAMUT::send_to_mysql()
+        shell: Rscript {0}
+        
