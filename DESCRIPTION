@@ -15,5 +15,6 @@ Imports:
     magrittr,
     zoo,
     RMySQL,
+    usethis,
     REDCapR
 RoxygenNote: 5.0.1
