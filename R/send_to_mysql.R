@@ -9,6 +9,7 @@
 
 send_to_mysql <- function() {
 
+    usethis::ui_done("Load REDCap data")
    uri <- Sys.getenv("REDCAP_GAMUT_uri")
 
     metric_details <- tbl_df(
@@ -66,6 +67,8 @@ send_to_mysql <- function() {
      redcap_data <-
         bind_rows(GAMUT_data, AIM_data, AEL_data, MTr_data)
 
+     usethis::ui_done("Processing GAMUT data")
+     
     metadata <-
         data.frame(key = c("GAMUT_date_loaded"),
                    value = Sys.time())
@@ -95,7 +98,7 @@ send_to_mysql <- function() {
     #                        )
     # )
 
-    mydata <- mydata %>% inner_join(ID.lookup)
+    mydata <- mydata %>% inner_join(ID.lookup, by = "program_name")
 
     monthly_data <-
         mydata %>%
@@ -108,7 +111,8 @@ send_to_mysql <- function() {
 
 
 
-
+    usethis::ui_done("Updating monthly data")
+    
 
 ## Send to MySQL
     conn <-  dbConnect(
@@ -166,7 +170,8 @@ send_to_mysql <- function() {
 
     dbDisconnect(conn)
 
-
+    usethis::ui_done("All done!")
+    
 }
 
 
