@@ -25,4 +25,3 @@ than numerators.
 \author{
 Rollie Parrish
 }
-

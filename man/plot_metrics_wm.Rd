@@ -4,8 +4,15 @@
 \alias{plot_metrics_wm}
 \title{plot_metrics_wm}
 \usage{
-plot_metrics_wm(metric = "metric name", program_name, wavg, rate_overall, num,
-  reordering = "decreasing", qlabel = "")
+plot_metrics_wm(
+  metric = "metric name",
+  program_name,
+  wavg,
+  rate_overall,
+  num,
+  reordering = "decreasing",
+  qlabel = ""
+)
 }
 \arguments{
 \item{metric}{Name of the GAMUT metric}
@@ -28,4 +35,3 @@ Returns a dot plot for a given metric. Based on weighted averages
 \author{
 Rollie Parrish
 }
-

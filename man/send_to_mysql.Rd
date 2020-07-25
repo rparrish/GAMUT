@@ -15,4 +15,3 @@ updates the GAMUT dashboard database tables
 \author{
 Rollie Parrish
 }
-

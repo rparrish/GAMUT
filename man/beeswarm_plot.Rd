@@ -20,4 +20,3 @@ build a horizontal beeswarm plot with error bars for individual program
 \author{
 Rollie Parrish
 }
-

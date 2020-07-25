@@ -4,9 +4,17 @@
 \alias{plot_metrics}
 \title{plot_metrics}
 \usage{
-plot_metrics(metric = "metric name", program_name, num, den,
-  reordering = "decreasing", qlabel = "Estimated rate", rate = "\%",
-  type = "dotplot_errors", ...)
+plot_metrics(
+  metric = "metric name",
+  program_name,
+  num,
+  den,
+  reordering = "decreasing",
+  qlabel = "Estimated rate",
+  rate = "\%",
+  type = "dotplot_errors",
+  ...
+)
 }
 \arguments{
 \item{metric}{Name of the GAMUT metric}
@@ -33,4 +41,3 @@ Returns a dot plot for a given metric. Based on numerators and denominators
 \author{
 Rollie Parrish
 }
-

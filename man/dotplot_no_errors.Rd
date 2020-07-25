@@ -4,10 +4,19 @@
 \alias{dotplot_no_errors}
 \title{dotplot_no_errors}
 \usage{
-dotplot_no_errors(x, myTheme = simpleTheme(pch = 19, col = 1),
-  qlabel = "Weighted average", add.text.to.qlabel = "",
-  reorder.groups = TRUE, reordering = "decreasing", label.define = list(),
-  reference.line = NULL, bar.color = 1, horizontal = TRUE, ...)
+dotplot_no_errors(
+  x,
+  myTheme = simpleTheme(pch = 19, col = 1),
+  qlabel = "Weighted average",
+  add.text.to.qlabel = "",
+  reorder.groups = TRUE,
+  reordering = "decreasing",
+  label.define = list(),
+  reference.line = NULL,
+  bar.color = 1,
+  horizontal = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{dataframe}
@@ -39,4 +48,3 @@ weighted averages
 \author{
 Rollie Parrish
 }
-

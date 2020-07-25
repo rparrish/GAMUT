@@ -24,4 +24,3 @@ returns the GAMUT dotplot and table
 \author{
 Rollie Parrish
 }
-

@@ -18,4 +18,3 @@ recodes a list of factors to a number from 100 to 999
 \author{
 Rollie Parrish
 }
-
