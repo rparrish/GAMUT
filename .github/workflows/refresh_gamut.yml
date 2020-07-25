@@ -53,7 +53,7 @@ jobs:
           GAMUT_token:  ${{ secrets.GAMUT_token }}
           AEL_token:  ${{ secrets.AEL_token }}
           AIM_token:  ${{ secrets.AIM_token }}
-          MT_token:  ${{ secrets.MT_token }}
+          MTr_token:  ${{ secrets.MTR_token }}
         run: |
           library(DBI)
           library(REDCapR)
