@@ -6,6 +6,9 @@
 \usage{
 GAMUT_data(file = "data/GAMUT.Rdata")
 }
+\arguments{
+\item{file}{path to GAMUT.Rdata}
+}
 \description{
 get GAMUT data from REDCap, transform/aggregate by
 individual program. Save as metricData to
@@ -14,4 +17,3 @@ GAMUT.Rdata file in the data folder
 \author{
 Rollie Parrish
 }
-

@@ -5,6 +5,7 @@
 #' individual program. Save as metricData to
 #' GAMUT.Rdata file in the data folder
 #'
+#' @param file path to GAMUT.Rdata
 #' @author Rollie Parrish
 #' @export
 
