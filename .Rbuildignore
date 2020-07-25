@@ -3,3 +3,4 @@
 ^GAMUT\.Rcheck$
 ^GAMUT.*\.tar\.gz$
 ^GAMUT.*\.tgz$
+.github
