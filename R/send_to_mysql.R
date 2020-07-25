@@ -10,65 +10,66 @@
 send_to_mysql <- function() {
 
     usethis::ui_done("Load REDCap data")
-   uri <- Sys.getenv("REDCAP_GAMUT_uri")
+    uri <- Sys.getenv("REDCAP_GAMUT_uri")
 
-    metric_details <- tbl_df(
-        redcap_read_oneshot(
+    metric_details <-
+        REDCapR::redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("metric_details_token"),
-            export_data_access_groups = FALSE, 
+            export_data_access_groups = FALSE,
             raw_or_label = "label"
-        )$data
-    )
+        )$data %>%
+        dplyr::as_tibble()
 
-    GAMUT_data <- tbl_df(
-        redcap_read_oneshot(
+    GAMUT_data <-
+        REDCapR::redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("GAMUT_token"),
             export_data_access_groups = TRUE, #guess_max = 10000,
             guess_type = FALSE,
             raw_or_label = "label"
         )$data %>%
-            mutate_at(vars(total_patients:sre), as.numeric)
-    )
-     AIM_data <- tbl_df(
-        redcap_read_oneshot(
+        mutate_at(vars(total_patients:sre), as.numeric) %>%
+        dplyr::as_tibble()
+
+    AIM_data <-
+        REDCapR::redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("AIM_token"),
             export_data_access_groups = TRUE, #guess_max = 10000,
             guess_type = FALSE,
             raw_or_label = "label"
         )$data %>%
-            mutate_at(vars(total_patients:sre), as.numeric)
-    ) 
+        mutate_at(vars(total_patients:sre), as.numeric) %>%
+        dplyr::as_tibble()
 
-    AEL_data <- tbl_df(
-        redcap_read_oneshot(
+    AEL_data <-
+        REDCapR::redcap_read_oneshot(
             redcap_uri = uri,
             token = Sys.getenv("AEL_token"),
             export_data_access_groups = TRUE, #guess_max = 10000,
             guess_type = FALSE,
             raw_or_label = "label"
         )$data %>%
-            mutate_at(vars(total_patients:sre), as.numeric)
-    )
+            mutate_at(vars(total_patients:sre), as.numeric) %>%
+        dplyr::as_tibble()
 
-    MTr_data <- tbl_df(
-        redcap_read_oneshot(
+    MTr_data <-
+        REDCapR::redcap_read_oneshot(
             redcap_uri = uri,
-            token = Sys.getenv("MT_token"),
+            token = Sys.getenv("MTr_token"),
             export_data_access_groups = TRUE, #guess_max = 10000,
             guess_type = FALSE,
             raw_or_label = "label"
         )$data %>%
-            mutate_at(vars(total_patients:sre), as.numeric)
-    )
+        mutate_at(vars(total_patients:sre), as.numeric) %>%
+        dplyr::as_tibble()
 
      redcap_data <-
         bind_rows(GAMUT_data, AIM_data, AEL_data, MTr_data)
 
      usethis::ui_done("Processing GAMUT data")
-     
+
     metadata <-
         data.frame(key = c("GAMUT_date_loaded"),
                    value = Sys.time())
@@ -112,7 +113,7 @@ send_to_mysql <- function() {
 
 
     usethis::ui_done("Updating monthly data")
-    
+
 
 ## Send to MySQL
     conn <-  dbConnect(
@@ -171,7 +172,7 @@ send_to_mysql <- function() {
     dbDisconnect(conn)
 
     usethis::ui_done("All done!")
-    
+
 }
 
 
