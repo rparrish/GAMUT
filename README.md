@@ -7,7 +7,7 @@ R Functions that support the GAMUT database.
 
 ## Requirements
 
-The REDCap project tokens are saved in `.REDCap_config.R`, which must located in the working directory.
+The REDCap project tokens are saved in the `.Renviron`, which must located in the user's home directory.
 
 ## Installation  
 
