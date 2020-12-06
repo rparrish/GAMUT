@@ -15,3 +15,5 @@ The REDCap project tokens are saved in the `.Renviron`, which must located in th
 This package can be installed using devtools with the following:
 
     devtools::install_github("rparrish/GAMUT")
+
+Last edit: 2020-12-06
