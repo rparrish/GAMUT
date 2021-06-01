@@ -16,4 +16,4 @@ This package can be installed using devtools with the following:
 
     devtools::install_github("rparrish/GAMUT")
 
-Last edit: 2020-05-28
+Last edit: 2020-06-01
